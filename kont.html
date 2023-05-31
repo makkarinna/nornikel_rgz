@@ -6,9 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Контактные данные</title>
     <link rel="stylesheet" href="one.css">
+    <script>
+        function hideButton() {
+            document.getElementById("show-rules-btn").style.display = "none";
+            document.getElementById("hide-rules-btn").style.display = "block";
+
+            document.getElementById("rules").style.display = "block";
+        }
+        function showButton() {
+            document.getElementById("show-rules-btn").style.display = "block";
+            document.getElementById("hide-rules-btn").style.display = "none";
+
+            document.getElementById("rules").style.display = "none";
+        }
+    </script>
+    <style>
+        h1 {
+        margin-left: 50px;
+          position: relative;
+          overflow: hidden;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 34px;
+       
+        }
+        h1:after {
+          content: '';
+          position: absolute;
+          width: 1150px;
+          border-top: 1px solid #4e4e4e;   
+          margin-top: .6em;
+          margin-left: .4em;
+        }
+        .nor {
+            margin-left: 100px;
+            margin: 0;
+            text-decoration:none ;
+            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .adress {
+            display: flex;
+            align-items: center;
+        }
+        .kart {
+            width: 40px;
+            height: 40px;
+
+        }
+       button {
+        font-size: 20px;
+        font-family: Arial, Helvetica, sans-serif;
+       }
+    
+      </style>
+    
 </head>
 <body>
-    <header style="position: fixed;" class="header">
+    <header class="header">
         <img class="logo" src="	https://www.nornickel.ru/images/logo/logo-inverted-ru.svg">
         <div class="compain">
             <a class="men" href="one.html">О компании</a>
@@ -17,16 +71,42 @@
             <a class="men" href="vid.html">Видео</a>
         </div>
     </header>
+
     <main>
-        <iframe class="frame-nikel" src="https://yandex.ru/maps/-/CCUorZCI~B" allowfullscreen="true"></iframe>
-        <div class="contact-nikel">
-            <h1>Москва</h1>
-            <p>Адрес офиса: 1-й Красногвардейский проезд., д. 15</p>
-            <p>Телефон: +7 (495) 787 76 67</p>
-            <p>E-mail: gmk@nornik.ru</p>
-        </div>
+       
 
     </main>
+    <h1>Контакты</h1>
+
+
+<div>
+    <div class="game" >
+        <button id="show-rules-btn" onclick="hideButton()" style="background-color:#f5fafe; color: white; height: 50px; width: 100%; color: #004c97; border: none; cursor: pointer; font-weight: 550;">ПАО «ГМК «Норильский никель»</button>
+        <button id="hide-rules-btn" onclick="showButton()" style="display: none; background-color:#f5fafe; color: white; height: 50px; width: 100%; color: #004c97; border: none; cursor: pointer; font-weight: 550;">ПАО «ГМК «Норильский никель»</button>
+    
+    <div id="rules" style="display: none; margin-left: 30px;">
+        <div class="adress">
+            <div ><a href= '#'><img style="width: 50px; height: 50px;" alt="" src="free-icon-map-point-5817087.png"> </a></div>
+            <p style="color: gray;" class="nor">Адрес:</p>
+        </div>
+            <p style="margin-left: 41px;" class="nor">Российская Федерация, 123100, г. Москва,</p> 
+            <p style="margin-left: 41px;" class="nor">1-й Красногвардейский проезд., д. 15</p>
+        <a style="color: #004c97; margin-left: 41px;" class="nor" href="https://yandex.ru/maps/213/moscow/house/1_y_krasnogvardeyskiy_proyezd_15/Z04YcwRpTEcAQFtvfXt0cXhrYA==/?indoorLevel=1&ll=37.539527%2C55.750485&z=17">Смотреть на карте</a>
+        <div class="adress">
+            <div ><a href= '#'><img class="kart" alt="" src="free-icon-telephone-724664.png"> </a></div>
+            <p style="color: gray; margin-left: 5px;" class="nor">Телефон:</p>
+        </div>
+        <a style="color: #004c97; margin-left: 45px;" class="nor" href='tel:+7 (495) 787-76-67'>+7 (495) 787-76-67</a>
+        <div class="adress">
+            <div ><a href= '#'><img class="kart" alt="" src="free-icon-mail-3870795.png"></a></div>
+            <p style="color: gray; margin-left: 5px;" class="nor">E-mail:</p>
+        </div>
+        <a style="color: #004c97; margin-left: 45px;" class="nor" href="gmk@nornik.ru">gmk@nornik.ru</a>
+
+    </div>
+</div>
+
+    <iframe style="margin-top: 20px;" src="https://yandex.ru/map-widget/v1/?um=constructor%3A073a13eb774999bdfa9aa128825ea112367bf70e15f4515896ea94777f493eb4&amp;source=constructor" width="100%" height="545" frameborder="0"></iframe>
     
 </body>
 </html>
