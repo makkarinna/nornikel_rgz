@@ -6,10 +6,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Основные финансовые показатели</title>
     <link rel="stylesheet" href="one.css">
+    <script>
+        function hideButton() {
+            document.getElementById("show-rules-btn").style.display = "none";
+            document.getElementById("hide-rules-btn").style.display = "block";
+
+            document.getElementById("rules").style.display = "block";
+        }
+        function showButton() {
+            document.getElementById("show-rules-btn").style.display = "block";
+            document.getElementById("hide-rules-btn").style.display = "none";
+
+            document.getElementById("rules").style.display = "none";
+        }
+
+
+        let allprices = [15170, 15324,15350,15534,15708,15810,15942,15940,15904,15770,15436,15392,15396,15500,15408,15324,15200,15140,15054]; 
+        let alldates = ["28.04.2023",
+            "27.04.2023",
+            "26.04.2023",
+            "25.04.2023",
+            "24.04.2023",
+            "21.04.2023",
+            "20.04.2023",
+            "19.04.2023",
+            "18.04.2023",
+            "17.04.2023",
+            "14.04.2023",
+            "13.04.2023",
+            "12.04.2023",
+            "11.04.2023",
+            "10.04.2023",
+            "07.04.2023",
+            "06.04.2023",
+            "05.04.2023",
+            "04.04.2023",
+            "03.04.2023"
+        ];
+
+        function calculateStatistics(prices) {
+          let minPrice = Math.min(...prices);
+          let maxPrice = Math.max(...prices);
+          let sum = prices.reduce((acc, price) => acc + price, 0);
+          let mean = sum / prices.length; 
+          let squaredDifferences = prices.map(price => Math.pow(price - mean, 2));
+          let variance = squaredDifferences.reduce((acc, squaredDiff) => acc + squaredDiff, 0) / prices.length;
+          let standardDeviation = Math.sqrt(variance);
+          let totalCapitalization = 2219270797646
+      
+          return {
+            minPrice: minPrice,
+            maxPrice: maxPrice,
+            standardDeviation: standardDeviation,
+            totalCapitalization: totalCapitalization
+          };
+        }
+        
+        let statistics = calculateStatistics(allprices);
+        console.log(statistics);
+
+        window.onload = function() {
+          document.getElementById('capitalization').textContent = statistics.totalCapitalization.toFixed(2);
+          document.getElementById('minPrice').textContent = statistics.minPrice;
+          document.getElementById('maxPrice').textContent = statistics.maxPrice;
+          document.getElementById('standardDeviation').textContent = statistics.standardDeviation.toFixed(2);
+
+          let tableBody = document.getElementById('allprices_table');
+          for (let i = 0; i < allprices.length; i++) {
+            let row = document.createElement('tr');
+            let dateCell = document.createElement('td');
+            let priceCell = document.createElement('td');
+            dateCell.textContent = alldates[i];
+            priceCell.textContent = allprices[i];
+            row.appendChild(dateCell);
+            row.appendChild(priceCell);
+            tableBody.appendChild(row);
+          }
+        };
+        
+        
+    </script>
+    <style>
+        h1 {
+        margin-left: 50px;
+       
+          overflow: hidden;
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 34px;
+          margin-top: 120px;
+       
+        }
+        h1:after {
+          content: '';
+          position: absolute;
+          width: 900px;
+          border-top: 1px solid #4e4e4e;   
+          margin-top: .6em;
+          margin-left: .4em;
+        }
+        .table_ {
+            margin-top: 50px;
+            color: #004c97;
+            margin-left: 200px;
+           
+        }
+        .zn {
+            margin-left: 585px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color:#004c97;
+            border-left: 3px solid;
+            padding-left: 30px;
+        }
+        td, tr {
+            padding: 10px;
+            text-align: center;
+            width: 500px;
+            background-color: #f5fafe;
+            font-size: 20px;
+            font-family: Arial, Helvetica, sans-serif;
+
+        }
+       
+       
+        
+    </style>
+    
 </head>
 <body>
     <header class="header">
-        <img class="logo" src="	https://www.nornickel.ru/images/logo/logo-inverted-ru.svg">
+       <a href="one.html"><img class="logo" src="	https://www.nornickel.ru/images/logo/logo-inverted-ru.svg"></a>
         <div class="compain">
             <a class="men" href="one.html">О компании</a>
             <a class="men" href="fin.html">Основные финансовые показатели</a>
@@ -18,7 +145,39 @@
         </div>
     </header>
     <main>
-        <h1>YJH</h1>
+        <div>
+            <h1>Финансовые показатели</h1>
+
+            <div class="game">
+                <button id="show-rules-btn" onclick="hideButton()" style="background-color:#f5fafe; color: white; height: 50px; width: 100%; color: #004c97; border: none; cursor: pointer; font-weight: 550; font-size: 20px; ">Дополнительные значения</button>
+                <button id="hide-rules-btn" onclick="showButton()" style="display: none; background-color:#f5fafe; color: white; height: 50px; width: 100%; color: #004c97; border: none; cursor: pointer; font-weight: 550; font-size: 20px;">Дополнительные значения</button>
+            <div id="rules" style="display: none;">
+            <div id='section-prices' class="section-text">
+
+                <p class="zn">Минимальная цена: <span id="minPrice">...</span></p>
+                <p class="zn">Максимальная цена: <span id="maxPrice">...</span></p>
+                <p class="zn">Среднеквадратическое отклонение цены: <span id="standardDeviation">...</span></p>
+                <p class="zn">Капитализация: <span id="capitalization">...</span></p>
+            </div>
+        </div>
+        <div>
+            <table border="1" class="table_">
+                <thead>
+                    <tr>
+                        <th style="font-size: 23px;">
+                            Дата
+                        </th>
+                        <th style="padding: 20px; font-size: 23px;">
+                            Цена закрытия 
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="allprices_table"></tbody>
+
+            </table>
+        </div>
+        </div>
+        </div>
     </main>
    
 </body>
